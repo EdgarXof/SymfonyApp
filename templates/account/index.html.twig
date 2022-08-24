@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account index{% endblock %}
+
+{% block body %}
+    <h1 class="text-center" >Account</h1>
+    <div class="mx-auto" style="width: 1500px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Balance</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for account in accounts %}
+            <tr>
+                <td>{{ account.id }}</td>
+                <td>{{ account.balance }}</td>
+                <td>{{ account.name }}</td>
+                <td>
+                <a href="{{ path('account_delete', {'id': account.id}) }}" class="btn btn-danger">delete</a>
+                <a href="{{ path('account_edit', {'id': account.id}) }}" class="btn btn-secondary">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('account_new') }}" class="btn btn-primary">Create new</a>
+</div>
+{% endblock %}
